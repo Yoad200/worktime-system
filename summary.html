@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>סיכום שעות עובדים</title>
+</head>
+<body>
+    <h1>סיכום שעות עובדים</h1>
+
+    <form method="POST">
+        מ: <input type="date" name="start_date" value="{{ start_date }}">
+        עד: <input type="date" name="end_date" value="{{ end_date }}">
+        <button type="submit">הצג</button>
+    </form>
+
+    <h2>טבלה מפורטת:</h2>
+    <table border="1">
+        <tr>
+            <th>שם</th>
+            <th>תאריך</th>
+            <th>סה\"כ שעות</th>
+        </tr>
+        {% for row in results %}
+        <tr>
+            <td>{{ row.name }}</td>
+            <td>{{ row.date }}</td>
+            <td>{{ row.total_hours }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>סיכום לפי עובד:</h2>
+    <table border="1">
+        <tr>
+            <th>שם</th>
+            <th>סה\"כ שעות</th>
+        </tr>
+        {% for name, total in summary_by_user.items() %}
+        <tr>
+            <td>{{ name }}</td>
+            <td>{{ total }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br>
+    <a href="/admin">חזרה לניהול</a>
+    <br>
+    <a href="/logout">התנתק</a>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ניהול דיווחים</title>
+</head>
+<body>
+    <h1>דיווחים של כל העובדים</h1>
+    <table border="1">
+        <tr>
+            <th>שם עובד</th>
+            <th>תאריך</th>
+            <th>שעת התחלה</th>
+            <th>שעת סיום</th>
+            <th>סה"כ שעות</th>
+        </tr>
+        {% for log in logs %}
+        <tr>
+            <td>{{ log.name }}</td>
+            <td>{{ log.date }}</td>
+            <td>{{ log.start_time }}</td>
+            <td>{{ log.end_time }}</td>
+            <td>{{ log.total_hours }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/logout">התנתק</a>
+</body>
+</html>
