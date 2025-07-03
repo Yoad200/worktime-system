@@ -1,27 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="he">
 <head>
-    <meta charset="utf-8">
-    <title>הדיווחים שלי</title>
+    <meta charset="UTF-8">
+    <title>התחברות</title>
 </head>
 <body>
-    <h1>שלום, {{ username }}!</h1>
-    <h2>הדיווחים שלך:</h2>
-    <table border="1">
-        <tr>
-            <th>תאריך</th>
-            <th>שעה</th>
-        </tr>
-        {% for record in records %}
-        <tr>
-            <td>{{ record[0] }}</td>
-            <td>{{ record[1] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <h1>התחברות</h1>
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
+    <form method="POST" action="/login">
+        <label>שם משתמש:</label>
+        <input type="text" name="username" required><br><br>
+        <label>סיסמה:</label>
+        <input type="password" name="password" required><br><br>
+        <input type="submit" value="התחבר">
+    </form>
     <br>
-    <a href="/dashboard">חזרה לדיווח</a>
-    <br>
-    <a href="/logout">התנתק</a>
+    <a href="/register">להרשמה</a>
 </body>
 </html>
