@@ -84,8 +84,24 @@ def report():
         c.execute("INSERT INTO reports (user_id, date, time) VALUES (?, ?, ?)", (session['user_id'], date, time))
         conn.commit()
         conn.close()
-        return "הדיווח נקלט בהצלחה!"
+        return redirect('/my_summary')
     return redirect('/')
+
+@app.route('/my_summary')
+def my_summary():
+    if 'user_id' not in session:
+        return redirect('/')
+    conn = sqlite3.connect('database.db')
+    c = conn.cursor()
+    c.execute("""
+        SELECT date, time
+        FROM reports
+        WHERE user_id = ?
+        ORDER BY date DESC, time DESC
+    """, (session['user_id'],))
+    records = c.fetchall()
+    conn.close()
+    return render_template('summary.html', records=records)
 
 @app.route('/admin')
 def admin():
