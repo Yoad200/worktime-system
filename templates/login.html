@@ -6,17 +6,16 @@
 </head>
 <body>
     <h1>התחברות</h1>
-    {% if error %}
-        <p style="color:red;">{{ error }}</p>
-    {% endif %}
     <form method="POST" action="/login">
-        <label>שם משתמש:</label>
-        <input type="text" name="username" required><br><br>
-        <label>סיסמה:</label>
-        <input type="password" name="password" required><br><br>
-        <input type="submit" value="התחבר">
+        <label for="username">שם משתמש:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">סיסמה:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">התחבר</button>
     </form>
     <br>
-    <a href="/register">להרשמה</a>
+    <a href="/register">אין לך חשבון? הרשם כאן</a>
 </body>
 </html>
