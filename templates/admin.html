@@ -2,28 +2,26 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>ניהול דיווחים</title>
+    <title>דיווחי עובדים</title>
 </head>
 <body>
-    <h1>דיווחים של כל העובדים</h1>
+    <h1>דיווחי עובדים - ממשק ניהול</h1>
     <table border="1">
         <tr>
-            <th>שם עובד</th>
+            <th>שם משתמש</th>
             <th>תאריך</th>
-            <th>שעת התחלה</th>
-            <th>שעת סיום</th>
-            <th>סה"כ שעות</th>
+            <th>שעה</th>
         </tr>
-        {% for log in logs %}
+        {% for record in records %}
         <tr>
-            <td>{{ log.name }}</td>
-            <td>{{ log.date }}</td>
-            <td>{{ log.start_time }}</td>
-            <td>{{ log.end_time }}</td>
-            <td>{{ log.total_hours }}</td>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
+            <td>{{ record[2] }}</td>
         </tr>
         {% endfor %}
     </table>
+    <br>
+    <a href="/dashboard">חזרה ללוח הבקרה</a>
     <br>
     <a href="/logout">התנתק</a>
 </body>
