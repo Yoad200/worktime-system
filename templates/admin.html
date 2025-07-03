@@ -1,28 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="he">
 <head>
-    <meta charset="utf-8">
-    <title>דיווחי עובדים</title>
+    <meta charset="UTF-8">
+    <title>דיווחי עובדים - מנהל</title>
 </head>
 <body>
-    <h1>דיווחי עובדים - ממשק ניהול</h1>
-    <table border="1">
-        <tr>
-            <th>שם משתמש</th>
-            <th>תאריך</th>
-            <th>שעה</th>
-        </tr>
-        {% for record in records %}
-        <tr>
-            <td>{{ record[0] }}</td>
-            <td>{{ record[1] }}</td>
-            <td>{{ record[2] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <h1>צפייה בדיווחי כל העובדים</h1>
+
+    {% if records %}
+        <table border="1">
+            <tr>
+                <th>שם משתמש</th>
+                <th>תאריך</th>
+                <th>שעה</th>
+            </tr>
+            {% for record in records %}
+                <tr>
+                    <td>{{ record[0] }}</td>
+                    <td>{{ record[1] }}</td>
+                    <td>{{ record[2] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>אין דיווחים במערכת.</p>
+    {% endif %}
+
     <br>
-    <a href="/dashboard">חזרה ללוח הבקרה</a>
-    <br>
+    <a href="/dashboard">חזרה ללוח הבקרה</a><br>
     <a href="/logout">התנתק</a>
 </body>
 </html>
