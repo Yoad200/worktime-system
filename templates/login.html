@@ -5,26 +5,22 @@
     <title>הדיווחים שלי</title>
 </head>
 <body>
-    <h1>שלום, {{ name }}!</h1>
+    <h1>שלום, {{ username }}!</h1>
     <h2>הדיווחים שלך:</h2>
     <table border="1">
         <tr>
             <th>תאריך</th>
-            <th>שעת התחלה</th>
-            <th>שעת סיום</th>
-            <th>סה"כ שעות</th>
+            <th>שעה</th>
         </tr>
-        {% for log in logs %}
+        {% for record in records %}
         <tr>
-            <td>{{ log.date }}</td>
-            <td>{{ log.start_time }}</td>
-            <td>{{ log.end_time }}</td>
-            <td>{{ log.total_hours }}</td>
+            <td>{{ record[0] }}</td>
+            <td>{{ record[1] }}</td>
         </tr>
         {% endfor %}
     </table>
     <br>
-    <a href="/report">חזרה לדיווח</a>
+    <a href="/dashboard">חזרה לדיווח</a>
     <br>
     <a href="/logout">התנתק</a>
 </body>
