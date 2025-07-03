@@ -1,7 +1,16 @@
-<h2>הרשמה</h2>
-<form method="post">
-  שם משתמש: <input type="text" name="username"><br>
-  סיסמה: <input type="password" name="password"><br>
-  <input type="submit" value="הרשם">
-</form>
-<p><a href="/">כבר רשום? התחבר</a></p>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>הרשמה</title>
+</head>
+<body>
+    <h2>הרשמה</h2>
+    <form method="POST" action="/register">
+        שם משתמש: <input type="text" name="username" required><br>
+        סיסמה: <input type="password" name="password" required><br>
+        <input type="submit" value="הרשם">
+    </form>
+    <a href="/">כבר יש לך חשבון? התחבר כאן</a>
+</body>
+</html>
