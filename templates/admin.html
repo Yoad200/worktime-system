@@ -2,10 +2,11 @@
 <html lang="he">
 <head>
     <meta charset="UTF-8">
-    <title>דיווחי עובדים - מנהל</title>
+    <title>מסך ניהול - דיווחי עובדים</title>
 </head>
 <body>
-    <h1>צפייה בדיווחי כל העובדים</h1>
+    <h1>ברוך הבא, מנהל</h1>
+    <h2>רשימת כל הדיווחים:</h2>
 
     {% if records %}
         <table border="1">
@@ -15,15 +16,15 @@
                 <th>שעה</th>
             </tr>
             {% for record in records %}
-                <tr>
-                    <td>{{ record[0] }}</td>
-                    <td>{{ record[1] }}</td>
-                    <td>{{ record[2] }}</td>
-                </tr>
+            <tr>
+                <td>{{ record[0] }}</td>
+                <td>{{ record[1] }}</td>
+                <td>{{ record[2] }}</td>
+            </tr>
             {% endfor %}
         </table>
     {% else %}
-        <p>אין דיווחים במערכת.</p>
+        <p>אין דיווחים להצגה.</p>
     {% endif %}
 
     <br>
