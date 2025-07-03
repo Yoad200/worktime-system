@@ -1,7 +1,18 @@
-<h2>שלום {{ username }}</h2>
-<form method="post" action="/report">
-  <button type="submit">דווח נוכחות עכשיו</button>
-</form>
-<br>
-<a href="/my_summary">צפייה בדיווחים שלי</a><br>
-<a href="/logout">התנתקות</a>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>לוח בקרה</title>
+</head>
+<body>
+    <h1>שלום, {{ username }}!</h1>
+    <h2>הגש דיווח:</h2>
+    <form method="POST" action="/report">
+        <input type="submit" value="שלח דיווח">
+    </form>
+    <br>
+    <a href="/my_summary">הצג סיכום אישי</a><br>
+    <a href="/admin">מעקב אדמין</a><br>
+    <a href="/logout">התנתק</a>
+</body>
+</html>
