@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, url_for, session
 import sqlite3
 from datetime import datetime
 import os
@@ -21,8 +21,8 @@ def init_db():
         CREATE TABLE IF NOT EXISTS reports (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_id INTEGER,
-            date TEXT,
-            time TEXT
+            time TEXT,
+            date TEXT
         )
     ''')
     conn.commit()
@@ -47,8 +47,7 @@ def register():
             c.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, password))
             conn.commit()
         except sqlite3.IntegrityError:
-            conn.close()
-            return render_template("register.html", error="שם המשתמש כבר קיים.")
+            return "שם משתמש כבר קיים"
         conn.close()
         return redirect('/')
     return render_template('register.html')
@@ -66,7 +65,7 @@ def login():
         session['user_id'] = user[0]
         session['username'] = username
         return redirect('/dashboard')
-    return render_template("login.html", error="שם משתמש או סיסמה לא נכונים")
+    return "שם משתמש או סיסמה לא נכונים"
 
 @app.route('/dashboard')
 def dashboard():
@@ -74,11 +73,9 @@ def dashboard():
         return redirect('/')
     return render_template('dashboard.html', username=session['username'])
 
-@app.route('/report', methods=['POST', 'GET'])
+@app.route('/report', methods=['POST'])
 def report():
-    if 'user_id' not in session:
-        return redirect('/')
-    if request.method == 'POST':
+    if 'user_id' in session:
         now = datetime.now()
         date = now.strftime('%Y-%m-%d')
         time = now.strftime('%H:%M:%S')
@@ -88,7 +85,7 @@ def report():
         conn.commit()
         conn.close()
         return redirect('/my_summary')
-    return render_template('report.html')
+    return redirect('/')
 
 @app.route('/my_summary')
 def my_summary():
@@ -104,7 +101,7 @@ def my_summary():
     """, (session['user_id'],))
     records = c.fetchall()
     conn.close()
-    return render_template('summary.html', records=records, name=session.get('username'))
+    return render_template('summary.html', records=records, name=session['username'])
 
 @app.route('/admin')
 def admin():
