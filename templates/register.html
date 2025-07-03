@@ -1,16 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="he">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>הרשמה</title>
 </head>
 <body>
-    <h2>הרשמה</h2>
+    <h1>הרשמה</h1>
+    {% if error %}
+        <p style="color:red;">{{ error }}</p>
+    {% endif %}
     <form method="POST" action="/register">
-        שם משתמש: <input type="text" name="username" required><br>
-        סיסמה: <input type="password" name="password" required><br>
+        <label>שם משתמש:</label>
+        <input type="text" name="username" required><br><br>
+        <label>סיסמה:</label>
+        <input type="password" name="password" required><br><br>
         <input type="submit" value="הרשם">
     </form>
-    <a href="/">כבר יש לך חשבון? התחבר כאן</a>
+    <br>
+    <a href="/login">כבר רשום? התחבר כאן</a>
 </body>
 </html>
