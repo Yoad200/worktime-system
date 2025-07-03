@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="he">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <title>לוח בקרה</title>
 </head>
 <body>
     <h1>שלום, {{ username }}!</h1>
-    <h2>הגש דיווח:</h2>
+    <h2>מה תרצה לעשות?</h2>
+
     <form method="POST" action="/report">
-        <input type="submit" value="שלח דיווח">
+        <button type="submit">דיווח נוכחות</button>
     </form>
     <br>
-    <a href="/my_summary">הצג סיכום אישי</a><br>
-    <a href="/admin">מעקב אדמין</a><br>
+    <a href="/summary">צפייה בדיווחים שלי</a><br>
+    {% if username == 'admin' %}
+        <a href="/admin">צפייה בדיווחי כל העובדים (מנהל)</a><br>
+    {% endif %}
     <a href="/logout">התנתק</a>
 </body>
 </html>
