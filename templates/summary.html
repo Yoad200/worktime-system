@@ -1,23 +1,34 @@
 <!DOCTYPE html>
-<html>
+<html lang="he">
 <head>
-    <meta charset="utf-8">
-    <title>סיכום דיווחים</title>
+    <meta charset="UTF-8">
+    <title>הדיווחים שלי</title>
 </head>
 <body>
-    <h1>סיכום דיווחים עבור {{ username }}</h1>
-    <table border="1">
-        <tr>
-            <th>תאריך</th>
-            <th>שעה</th>
-        </tr>
-        {% for record in records %}
-        <tr>
-            <td>{{ record[0] }}</td>
-            <td>{{ record[1] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <h1>שלום, {{ name }}!</h1>
+    <h2>הדיווחים שלך:</h2>
+
+    {% if logs %}
+        <table border="1">
+            <tr>
+                <th>תאריך</th>
+                <th>שעת התחלה</th>
+                <th>שעת סיום</th>
+                <th>סה"כ שעות</th>
+            </tr>
+            {% for log in logs %}
+                <tr>
+                    <td>{{ log.date }}</td>
+                    <td>{{ log.start_time }}</td>
+                    <td>{{ log.end_time }}</td>
+                    <td>{{ log.total_hours }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>לא נמצאו דיווחים.</p>
+    {% endif %}
+
     <br>
     <a href="/dashboard">חזרה ללוח הבקרה</a>
     <br>
