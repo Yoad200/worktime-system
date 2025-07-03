@@ -8,30 +8,25 @@
     <h1>שלום, {{ name }}!</h1>
     <h2>הדיווחים שלך:</h2>
 
-    {% if logs %}
+    {% if records %}
         <table border="1">
             <tr>
                 <th>תאריך</th>
-                <th>שעת התחלה</th>
-                <th>שעת סיום</th>
-                <th>סה"כ שעות</th>
+                <th>שעה</th>
             </tr>
-            {% for log in logs %}
-                <tr>
-                    <td>{{ log.date }}</td>
-                    <td>{{ log.start_time }}</td>
-                    <td>{{ log.end_time }}</td>
-                    <td>{{ log.total_hours }}</td>
-                </tr>
+            {% for r in records %}
+            <tr>
+                <td>{{ r[0] }}</td>
+                <td>{{ r[1] }}</td>
+            </tr>
             {% endfor %}
         </table>
     {% else %}
-        <p>לא נמצאו דיווחים.</p>
+        <p>אין דיווחים להצגה.</p>
     {% endif %}
 
     <br>
-    <a href="/dashboard">חזרה ללוח הבקרה</a>
-    <br>
+    <a href="/dashboard">חזרה ללוח הבקרה</a><br>
     <a href="/logout">התנתק</a>
 </body>
 </html>
