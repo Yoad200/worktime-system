@@ -6,16 +6,18 @@
 </head>
 <body>
     <h1>שלום, {{ username }}!</h1>
-    <h2>מה תרצה לעשות?</h2>
 
     <form method="POST" action="/report">
-        <button type="submit">דיווח נוכחות</button>
+        <button type="submit">דווח נוכחות עכשיו</button>
     </form>
+
     <br>
-    <a href="/summary">צפייה בדיווחים שלי</a><br>
+    <a href="/my_summary">הצג את הדיווחים שלי</a><br>
+
     {% if username == 'admin' %}
-        <a href="/admin">צפייה בדיווחי כל העובדים (מנהל)</a><br>
+        <a href="/admin">מסך ניהול (Admin)</a><br>
     {% endif %}
+
     <a href="/logout">התנתק</a>
 </body>
 </html>
